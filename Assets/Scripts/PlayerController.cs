@@ -4,7 +4,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FreeCamera m_camera;
     [SerializeField] private GameObject m_uiPanel;
-    [SerializeField] private GameObject m_cloudController;
+    [SerializeField] private CloudController m_cloudController;
+    [SerializeField] private ItemSwitch m_itemSwitch;
+
+   
 
     private void Update()
     {
@@ -14,10 +17,15 @@ public class PlayerController : MonoBehaviour
         }
 
         m_camera.Move();
-        
-        if(Input.GetkeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_cloudController.MoveNext();
         }
+         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_itemSwitch.Switcher();
+        }
     }
+
 }

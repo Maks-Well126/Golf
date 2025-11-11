@@ -1,17 +1,20 @@
-using System.Numerics;
 using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
    [SerializeField] private Transform[] m_people;
    [SerializeField] private float m_speed = 2;
-
+   
+   private bool m_isMove;
    private int m_index = -1;
    private Vector3 m_position;
-   private bool m_isMove;
 
+    public void Start()
+    {
+      MoveNext();
+    }
 
-   public void MoveNext()
+    public void MoveNext()
    {
       m_index++;
 
