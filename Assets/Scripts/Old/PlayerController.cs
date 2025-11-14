@@ -1,31 +1,33 @@
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+namespace old
 {
-    [SerializeField] private FreeCamera m_camera;
-    [SerializeField] private GameObject m_uiPanel;
-    [SerializeField] private CloudController m_cloudController;
-    [SerializeField] private ItemSwitch m_itemSwitch;
-
-   
-
-    private void Update()
+    public class PlayerController : MonoBehaviour
     {
-        if(m_uiPanel.activeSelf)
+        [SerializeField] private FreeCamera m_camera;
+        [SerializeField] private GameObject m_uiPanel;
+        [SerializeField] private CloudController m_cloudController;
+        [SerializeField] private ItemSwitch m_itemSwitch;
+
+
+
+        private void Update()
         {
-            return;
+            if (m_uiPanel.activeSelf)
+            {
+                return;
+            }
+
+            m_camera.Move();
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                m_cloudController.MoveNext();
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                m_itemSwitch.Switcher();
+            }
         }
 
-        m_camera.Move();
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            m_cloudController.MoveNext();
-        }
-         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            m_itemSwitch.Switcher();
-        }
     }
-
 }

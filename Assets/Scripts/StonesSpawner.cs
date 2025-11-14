@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class StonesSpawner : MonoBehaviour
+  namespace Golf
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class StoneSpawner : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private GameObject[] m_prefabs;
+        [SerializeField] private Transform m_spawnPoint;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public GameObject Spawn()
+        {
+            var prefab = m_prefabs[Random.Range(0, m_prefabs.Length)];
+            return Instantiate(prefab, m_spawnPoint.position, m_spawnPoint.rotation);
+        }
     }
 }
