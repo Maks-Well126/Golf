@@ -41,7 +41,7 @@ namespace Golf
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                stone.GetComponent<Rigidbody>().AddForce(m_power * m_directions, ForceMode.Impulse);
+                stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Impulse);
             }
         }
     }

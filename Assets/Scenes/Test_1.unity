@@ -5128,6 +5128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ca9587e38f6ee40ac18ee4bc749e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  m_power: 200
+  m_point: {fileID: 1584033201}
   m_minAngleZ: -30
   m_maxAngleZ: 30
   m_speed: 300
@@ -12707,7 +12709,7 @@ Transform:
   m_GameObject: {fileID: 1584033200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.127, y: 1.085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
