@@ -1,15 +1,23 @@
+using System;
 using UnityEngine;
 
 namespace Golf
 {
     public class LevelController : MonoBehaviour
     {
+        [SerializeField] private int m_missedCount;
         [SerializeField] [Min(0)] private float m_spawnRate = 0.5f;
         [SerializeField] private StoneSpawner m_stoneSpawner;
 
         private float m_time;
+        private int m_currentMissedCount;
 
-        void Start()
+        private void Awake()
+        {
+            m_stoneSpawner = FindObjectOfType<StoneSpawner>();
+        }
+
+        private void Start()
         {
             m_time = m_spawnRate;
         }
@@ -21,11 +29,32 @@ namespace Golf
 
             if (m_time >= m_spawnRate)
             {
-                m_stoneSpawner.Spawn();
+               Stone stone = m_stoneSpawner.Spawn();
+               stone.Hit += OnHitStone;
+               stone.Missed += OnMissed;
                 m_time = 0;
-            }
 
-           
+            }
+        }
+
+        private void OnHitStone(Stone stone)
+        {
+            stone.Hit -= OnHitStone;
+            stone.Missed -= OnMissed;
+            
+            Debug.Log("Score");
+        }
+        
+        private void OnMissed(Stone stone)
+        {
+            stone.Hit -= OnHitStone;
+            stone.Missed -= OnMissed;
+
+            m_currentMissedCount--;
+            if (m_currentMissedCount <= 0)
+            {
+                Debug.Log("GameOver");
+            }
         }
     }
 }
