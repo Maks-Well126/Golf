@@ -1,17 +1,23 @@
+using System;
 using UnityEngine;
 
 namespace Golf
 {
     public class PlayerController : MonoBehaviour
     {
-        // [SerializeField] private StoneSpawner m_stoneSpawner;
-        // void Update()
-        // {
-        //     if(Input.GetKeyDown(KeyCode.Space))
-        //     {
-        //         m_stoneSpawner.Spawn();
-        //     }
-        // }
+        
+        [SerializeField] private Stick m_stick;
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                m_stick.Down();
+            }
+            else
+            {
+                m_stick.Up();
+            }
+        }
     }
     
 }
