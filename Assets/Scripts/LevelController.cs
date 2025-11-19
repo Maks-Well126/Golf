@@ -49,11 +49,8 @@ namespace Golf
         {
             UnsubscribeStone(stone);
             
-            
             m_score++; 
-            Debug.Log($"Score: {m_score}");
-
-            UpdateUI();  
+            m_scoreManeger.Increase();
         }
         
         private void OnMissed(Stone stone)

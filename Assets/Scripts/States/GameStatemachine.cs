@@ -3,15 +3,17 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class GameStatemachine : MonoBehaviour
+    public class GameStateMachine : MonoBehaviour
     {
         [SerializeField] private MainMenuState m_mainMenuState;
-        [SerializeField] private GameplayState m_gameplayState;
+        [SerializeField] private GamePlayState m_gameplayState;
+        [SerializeField] private BootstrapState m_bootstrapState;
 
         private void Awake()
         {
             m_mainMenuState.Initialize(this);
             m_gameplayState.Initialize(this);
+            m_bootstrapState.Initialize(this);
         }
 
         private void Start() => Enter<BootstrapState>();
@@ -21,15 +23,17 @@ namespace Golf
         {
             if (typeof(T) == typeof(BootstrapState))
             {
-                m_mainMenuState.Enter();
+                m_bootstrapState.Enter();
             }
 
-            if (typeof(T) == typeof(MainMenuState))
-            {
+            else if (typeof(T) == typeof(MainMenuState))
+            {   
+                m_bootstrapState.Exit();
                 m_mainMenuState.Enter();
             }
-            else if(typeof(T) == typeof(GameplayState))
+            else if(typeof(T) == typeof(GamePlayState))
             {
+                m_mainMenuState.Exit();
                 m_gameplayState.Enter();
             }
         }

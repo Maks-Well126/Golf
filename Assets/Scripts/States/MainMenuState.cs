@@ -1,18 +1,19 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
 namespace Golf
 {
     public class MainMenuState : MonoBehaviour
     {    
-        [SerializeField] 
+
         [SerializeField] private GameObject m_mainMenuRoot;
         [SerializeField] private Button m_playButton;
         
-        private GameStatemachine m_gameStateMachine;
+        private GameStateMachine m_gameStateMachine;
 
-        public void Initialize(GameStatemachine gameStateMachine)
+        public void Initialize(GameStateMachine gameStateMachine)
         {
+            m_mainMenuRoot.SetActive(false);
             m_gameStateMachine = gameStateMachine;
         }
 
@@ -30,7 +31,7 @@ namespace Golf
 
         private void OnClicked()
         {
-            m_gameStateMachine.Enter<>();
+            m_gameStateMachine.Enter<GamePlayState>();
         }
         
     }
