@@ -42,6 +42,7 @@ namespace Golf
                Stone stone = m_stoneSpawner.Spawn();
                m_stones.Add(stone);
                stone.Hit += OnHitStone;
+               stone.HitBonus += OnHitBonusStone;
                stone.Missed += OnMissed;
                m_time = 0;
 
@@ -77,7 +78,15 @@ namespace Golf
         {
             stone.Hit -= OnHitStone;
             stone.Missed -= OnMissed;
+            stone.HitBonus -= OnHitBonusStone;
         }
+
+        private void OnHitBonusStone(Stone stone)
+        {
+            UnsubscribeStone(stone);
+            m_scoreManeger.AddBonus();   // +3 очка
+        }
+
 
     }
 

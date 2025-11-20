@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace Golf
 {
+    
     public class ScoreManeger : MonoBehaviour
     {
+        public void AddBonus() => score += 3;
+
         public event Action<int> ScoreChanged;
 
         private int m_score;
