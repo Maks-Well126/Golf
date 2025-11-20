@@ -4,7 +4,7 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {   
-        [SerializeField] [Min(0)] private float m_power = 250;
+        [SerializeField] [Min(0)] private float m_power = 250f;
         [SerializeField] private Transform m_point;
         [SerializeField] private float m_minAngleZ = -30;
         [SerializeField] private float m_maxAngleZ = 30;
@@ -16,15 +16,15 @@ namespace Golf
 
         private void FixedUpdate()
         {
-            var angles = transform.localEulerAngles;
+            Vector3 angles = transform.localEulerAngles;
 
             if (m_isDown)
             {
-                angles.z = Rotate(angles.z, m_minAngleZ);
+                angles.z = Rotate(angles.z, m_maxAngleZ);
             }
             else
             {
-                angles.z = Rotate(angles.z, m_maxAngleZ);
+                angles.z = Rotate(angles.z, m_minAngleZ);
             }
 
             transform.localEulerAngles = angles;
@@ -32,9 +32,9 @@ namespace Golf
             m_direction = (m_point.position - m_lastPointPosition).normalized;
             m_lastPointPosition = m_point.localPosition;
         }
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.gameObject.TryGetComponent<Stone>(out var stone))
+            if (collision.gameObject.TryGetComponent<Stone>(out var stone))
             {
                 stone.AddForce(m_power * m_direction);
             }
@@ -45,7 +45,7 @@ namespace Golf
         
      private float Rotate(float angleZ, float target)
         {
-            return Mathf.MoveTowardsAngle(angleZ, target, Time.deltaTime * m_speed);
+            return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.fixedDeltaTime);
         }
 
 

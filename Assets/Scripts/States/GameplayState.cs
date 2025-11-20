@@ -30,15 +30,19 @@ namespace Golf
 
             m_levelController.enabled = true;
             m_playerController.enabled = true;
+
+            m_levelController.Initialize();
+            m_levelController.Finished += OnFinished;
         }
 
-       
+        private void OnFinished() => m_gameStatemachine.Enter<GameOverState>();
 
         public void Exit()
         {
             m_levelController.enabled = false;
             m_playerController.enabled = false;
             m_scoreText.gameObject.SetActive(false);
+            m_levelController.Finished -= OnFinished;
         }
 
          private void OnScoreChanged(int score) => m_scoreText.text = score.ToString();
