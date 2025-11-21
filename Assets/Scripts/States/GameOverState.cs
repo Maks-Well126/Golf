@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Golf
 {
     
-    public class GameOverState : MonoBehaviour
+    public class GameOverState : StateBase
     {   
         [SerializeField] private GameObject m_gameOverPanel;
         [SerializeField] private TextMeshProUGUI m_scoreText;
@@ -13,22 +13,31 @@ namespace Golf
         [SerializeField] private ScoreManeger m_scoreManeger;
 
         private GameStateMachine m_gameStateMachine;
-         public void Initialize(GameStateMachine gameStateMachine)
+         public override void Initialize(GameStateMachine gameStateMachine)
         {
            m_gameStateMachine = gameStateMachine;
 
            m_gameOverPanel.gameObject.SetActive(false);
         }
 
-        public void Enter()
+        public override void Enter()
         {
             m_scoreText.text = m_scoreManeger.score.ToString();
+            
+            var record = PlayerPrefs.GetInt(GlobalConstans.Record, 0);
+
+            if (record < m_scoreManeger.score)
+            {
+                PlayerPrefs.SetInt(GlobalConstans.Record, m_scoreManeger.score);
+            }
+            
+            
             m_backMainMenu.onClick.AddListener(OnClicked);
             m_gameOverPanel.gameObject.SetActive(true);
         }
 
     
-        public void Exit()
+        public override void Exit()
         {
             m_gameOverPanel.gameObject.SetActive(false);
         }

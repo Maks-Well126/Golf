@@ -5,8 +5,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 namespace Golf
 {
-    public class GamePlayState : MonoBehaviour
-    {   
+    public class GamePlayState : StateBase
+    {   [SerializeField] private GameObject m_gameplayPanel;
+        
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private ScoreManeger m_scoreManeger;
         [SerializeField] private LevelController m_levelController;
@@ -14,19 +15,20 @@ namespace Golf
 
         private GameStateMachine m_gameStatemachine;
 
-        public void Initialize(GameStateMachine gameStatemachine)
-        {
-            m_scoreText.gameObject.SetActive(false);
+        public override void Initialize(GameStateMachine gameStatemachine)
+        {   
+            m_gameplayPanel.SetActive(false);
             m_gameStatemachine = gameStatemachine;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             m_scoreManeger.Reset();
             m_scoreManeger.ScoreChanged += OnScoreChanged;
 
-            m_scoreText.gameObject.SetActive(true);
             OnScoreChanged(m_scoreManeger.score);
+            m_gameplayPanel.SetActive(true);
+            
 
             m_levelController.enabled = true;
             m_playerController.enabled = true;
@@ -35,9 +37,9 @@ namespace Golf
             m_levelController.Finished += OnFinished;
         }
 
-        private void OnFinished() => m_gameStatemachine.Enter<GameOverState>();
+        private  void OnFinished() => m_gameStatemachine.Enter<GameOverState>();
 
-        public void Exit()
+        public override void Exit()
         {
             m_levelController.enabled = false;
             m_playerController.enabled = false;
