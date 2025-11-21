@@ -13,28 +13,35 @@ namespace Golf
         public bool IsBonus { get; set; }
 
         private Rigidbody m_rigidbody;
+    
        
 
         private void Awake()
         {
             m_rigidbody = GetComponent<Rigidbody>();
+            
         }
+
         private void OnCollisionEnter(Collision other)
         {
            if (other.gameObject.GetComponent<Stick>())
-    {
-        if (IsBonus){
-            Debug.Log("BONUS HIT!");
-    
-            HitBonus?.Invoke(this);
-        }
-        else
-            Hit?.Invoke(this);
+            {
 
-        return;
-    }
+               SoundManager.Instance.PlayHitSound();
 
-    // Всё остальное — промах
+                if (IsBonus)
+                {
+                    Debug.Log("BONUS HIT!");
+            
+                    HitBonus?.Invoke(this);
+                }
+                else
+
+                    Hit?.Invoke(this);
+
+                return;
+            }
+
         Missed?.Invoke(this);
         }
 
