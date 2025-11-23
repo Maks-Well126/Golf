@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Golf.UI
@@ -21,15 +20,22 @@ namespace Golf.UI
         }
 
         private void OnEnable()
-        {
-            OnRecordChanged
+        {  
+            OnRecordChanged(m_scoreManeger.score);
+            m_scoreManeger.RecordChanged += OnRecordChanged;
         }
+           
 
-        public object OnRecordChanged { get; set; }
 
-        private void OnDisable()
+
+        private void OnDisable() => 
+            m_scoreManeger.RecordChanged -= OnRecordChanged;
+
+       
+        private void OnRecordChanged(int value)
         {
-          
+            m_format ??= string.Empty;
+            m_text.text = string.Format( m_format, value.ToString());
         }
     }
 }

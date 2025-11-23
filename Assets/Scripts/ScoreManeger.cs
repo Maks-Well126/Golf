@@ -26,12 +26,15 @@ namespace Golf
 
         public int record
         {
-            get => PlayerPrefs.GetInt(GlobalConstans.Record, 0);
+            get
+            {
+                PlayerPrefs.DeleteKey(GlobalConstans.Record);
+                return PlayerPrefs.GetInt(GlobalConstans.Record, 0);
+            }
+
             private set
             {
-                var temp = PlayerPrefs.GetInt(GlobalConstans.Record, 0);
-
-                if (temp < value)
+                if (record < value)
                 {
                     PlayerPrefs.SetInt(GlobalConstans.Record, value);
                     RecordChanged?.Invoke(value);

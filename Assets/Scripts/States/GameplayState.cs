@@ -17,6 +17,7 @@ namespace Golf
 
         public override void Initialize(GameStateMachine gameStatemachine)
         {   
+
             m_gameplayPanel.SetActive(false);
             m_gameStatemachine = gameStatemachine;
         }
@@ -43,7 +44,7 @@ namespace Golf
         {
             m_levelController.enabled = false;
             m_playerController.enabled = false;
-            m_scoreText.gameObject.SetActive(false);
+            m_gameplayPanel.SetActive(false);
             m_levelController.Finished -= OnFinished;
         }
 
