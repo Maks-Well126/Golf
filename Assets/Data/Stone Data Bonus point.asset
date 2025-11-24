@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6215919b248628145b4f1c57cc3143f6, type: 3}
   m_Name: Stone Data Bonus point
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Data.StoneData
-  m_score: 4
+  m_score: 7
   m_ignoreMiss: 0
-  m_spawnChance: 25
+  m_spawnChance: 14
   m_givesLife: 0

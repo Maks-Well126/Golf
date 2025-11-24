@@ -17,7 +17,7 @@ namespace Golf
             img.color = new Color(1f, 0f, 0f, 0f);
         }
 
-        public void Flash(float duration = 0.15f)
+        public void Flash(float duration = 0.3f)
         {
             StartCoroutine(FlashRoutine(duration));
         }

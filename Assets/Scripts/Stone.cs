@@ -30,6 +30,8 @@ namespace Golf
             score = data.score;
             IgnoreMiss = data.ignoreMiss;
             GivesLife = data.givesLife;
+            
+            
         }
 
         private void OnCollisionEnter(Collision other)

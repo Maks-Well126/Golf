@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Data.StoneData
   m_score: 1
   m_ignoreMiss: 0
-  m_spawnChance: 90
+  m_spawnChance: 75
   m_givesLife: 0
