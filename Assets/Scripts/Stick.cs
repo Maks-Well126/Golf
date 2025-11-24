@@ -43,7 +43,7 @@ namespace Golf
         public void Down() => m_isDown = true;
         public void Up() => m_isDown = false;
         
-     private float Rotate(float angleZ, float target)
+        private float Rotate(float angleZ, float target)
         {
             return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.fixedDeltaTime);
         }   

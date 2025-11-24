@@ -31,6 +31,7 @@ namespace Golf
         {
             if (other.gameObject.GetComponent<Stick>())
             {
+                SoundManager.Instance.PlayHitSound();
                 Hit?.Invoke(this);
             }
             else

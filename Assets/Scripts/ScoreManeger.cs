@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Golf
 {
-    
     public class ScoreManeger : MonoBehaviour
     {
         public event Action<int> ScoreChanged;
@@ -17,42 +16,28 @@ namespace Golf
             private set
             {
                 m_score = value;
-                Debug.Log($"Score: {value}");
                 ScoreChanged?.Invoke(value);
             }
         }
 
         public int record
         {
-            get
-            {
-                PlayerPrefs.DeleteKey(GlobalConstans.Record);
-                return PlayerPrefs.GetInt(GlobalConstans.Record, 0);
-            }
+            get => PlayerPrefs.GetInt(GlobalConstans.Record, 0);
 
             private set
             {
                 if (record < value)
                 {
                     PlayerPrefs.SetInt(GlobalConstans.Record, value);
+                    PlayerPrefs.Save();       // ← важно для сохранения при выходе!
                     RecordChanged?.Invoke(value);
                 }
             }
         }
 
         public void Increase(int value) => score += value;
-        
+
         public void UpdateRecord() => record = score;
-        public void UpdateScore()
-        {
-            var record = PlayerPrefs.GetInt(GlobalConstans.Record, 0);
-
-            if (record < score)
-            {
-                PlayerPrefs.SetInt(GlobalConstans.Record, score);
-            }
-        }
-
 
         public void Reset() => score = 0;
     }

@@ -11,6 +11,12 @@ namespace Golf.UI
         [SerializeField] private ScoreManeger m_scoreManeger;
         [SerializeField] private string m_format;
         
+        private void Start()
+        {
+            int record = PlayerPrefs.GetInt(GlobalConstans.Record, 0);
+            m_text.text = string.Format( m_format, record.ToString());
+        }
+
         private void OnValidate()
         {
             if (!m_text)
@@ -21,12 +27,11 @@ namespace Golf.UI
 
         private void OnEnable()
         {  
-            OnRecordChanged(m_scoreManeger.score);
+            int record = PlayerPrefs.GetInt(GlobalConstans.Record, 0);
+            m_text.text = string.Format( m_format, record.ToString());
+            // OnRecordChanged(m_scoreManeger.score);
             m_scoreManeger.RecordChanged += OnRecordChanged;
         }
-           
-
-
 
         private void OnDisable() => 
             m_scoreManeger.RecordChanged -= OnRecordChanged;
