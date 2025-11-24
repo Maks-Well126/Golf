@@ -6,8 +6,6 @@ namespace Golf
     
     public class ScoreManeger : MonoBehaviour
     {
-        public void AddBonus() => score += 3;
-
         public event Action<int> ScoreChanged;
         public event Action<int> RecordChanged;
 
@@ -42,7 +40,7 @@ namespace Golf
             }
         }
 
-        public void Increase() => score++;
+        public void Increase(int value) => score += value;
         
         public void UpdateRecord() => record = score;
         public void UpdateScore()

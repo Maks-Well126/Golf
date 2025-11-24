@@ -46,11 +46,6 @@ namespace Golf
      private float Rotate(float angleZ, float target)
         {
             return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.fixedDeltaTime);
-        }
-
-
-   
-
-       
+        }   
     }
 }

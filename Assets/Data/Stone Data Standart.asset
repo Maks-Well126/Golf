@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6215919b248628145b4f1c57cc3143f6, type: 3}
+  m_Name: Stone Data Standart
+  m_EditorClassIdentifier: Assembly-CSharp::Golf.Data.StoneData
+  m_score: 1
+  m_ignoreMiss: 0
+  m_spawnChance: 90
+  m_givesLife: 0
