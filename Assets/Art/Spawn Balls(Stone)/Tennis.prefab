@@ -153,5 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fb5a087127fe54bbe7f564ef033073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Stone
-  m_data:
-  - {fileID: 11400000, guid: 6833d0e355d0a194183d57228691c841, type: 2}
+  m_data: {fileID: 11400000, guid: 6833d0e355d0a194183d57228691c841, type: 2}

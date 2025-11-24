@@ -27,13 +27,12 @@ namespace Golf.UI
 
         private void CreateHearts()
         {
-            // Очищаем контейнер перед созданием
+
             foreach (Transform child in m_heartsContainer)
                 Destroy(child.gameObject);
 
             m_hearts.Clear();
 
-            // Создаём максимальное количество сердец
             for (int i = 0; i < m_maxLives; i++)
             {
                 GameObject heart = Instantiate(m_heartPrefab, m_heartsContainer);
