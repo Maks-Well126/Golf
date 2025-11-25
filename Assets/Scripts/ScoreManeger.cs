@@ -29,13 +29,13 @@ namespace Golf
                 if (record < value)
                 {
                     PlayerPrefs.SetInt(GlobalConstans.Record, value);
-                    PlayerPrefs.Save();       // ← важно для сохранения при выходе!
+                    PlayerPrefs.Save();  
                     RecordChanged?.Invoke(value);
                 }
             }
         }
 
-        public void Increase(int value) => score += value;
+        public void Increase(int value) => score = Mathf.Max(0, score + value);
 
         public void UpdateRecord() => record = score;
 
